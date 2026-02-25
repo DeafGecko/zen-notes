@@ -15,17 +15,11 @@
 
 <body class="white font-georgia">
       <h2 class="zen-app-title">KANSO</h2>
-
-      <!-- Hover Triggers -->
       <div class="hover-trigger-bottom"></div>
       <div class="hover-trigger-right"></div>
-
-      <!-- Writing area App -->
       <div class="container">
             <textarea id="writing-area" placeholder="Start writing..." spellcheck="true" autofocus></textarea>
       </div>
-
-      <!-- Stats Panel -->
       <div class="stats-panel">
             <div class="stat-item">
                   <span class="stat-label">Characters</span>
@@ -40,11 +34,7 @@
                   <span class="stat-value" id="limit-count">0 / 0</span>
             </div>
       </div>
-
-      <!-- Controls Panel -->
       <div class="controls-panel">
-
-            <!-- Theme Selector -->
             <div class="control-group">
                   <div class="control-label">Theme</div>
                   <div class="theme-buttons">
@@ -59,8 +49,6 @@
                         </div>
                   </div>
             </div>
-
-            <!-- Font Selection -->
             <div class="control-group">
                   <div class="control-label">Font</div>
                   <select class="font-select" id="font-select" title="Font selector">
@@ -74,8 +62,6 @@
                         <option value="writer">Courier Prime (Writer)</option>
                   </select>
             </div>
-
-            <!-- Word Limit -->
             <div class="control-group">
                   <div class="control-label">Word Limit</div>
                   <div style="display: flex; align-items: center; gap: 16px; width: 100%;">
@@ -93,8 +79,6 @@
                         Word limit exceeded!
                   </div>
             </div>
-
-            <!-- File Controls -->
             <div class="control-group">
                   <div class="control-label">Files</div>
                   <div class="file-buttons">
@@ -111,10 +95,7 @@
                   <input type="file" id="file-input" accept=".txt,.md" />
             </div>
       </div>
-
       <script src="./src/scripts.js"></script>
-
-</html>
 </body>
 
 </html>
