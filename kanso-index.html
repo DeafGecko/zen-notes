@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Kanso - Minimalist Writing</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Open+Sans:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Courier+Prime:wght@400;700&display=swap"
+            rel="stylesheet">
+      <link rel="stylesheet" href="kanso-styles.css">
+</head>
+
+<body class="white font-georgia">
+      <h2 class="zen-app-title">KANSO</h2>
+
+<!-- Hover Triggers -->
+      <div class="hover-trigger-bottom"></div>
+      <div class="hover-trigger-right"></div>
+
+<!-- Writing area App -->
+      <div class="container">
+            <textarea id="writing-area" placeholder="Start writing..." spellcheck="true" autofocus></textarea>
+      </div>
+
+<!-- Stats Panel -->
+      <div class="stats-panel">
+            <div class="stat-item">
+                  <span class="stat-label">Characters</span>
+                  <span class="stat-value" id="char-count">0</span>
+            </div>
+            <div class="stat-item">
+                  <span class="stat-label">Words</span>
+                  <span class="stat-value" id="word-count">0</span>
+            </div>
+            <div class="stat-item" id="limit-display" style="display: none;">
+                  <span class="stat-label">Limit</span>
+                  <span class="stat-value" id="limit-count">0 / 0</span>
+            </div>
+      </div>
+
+<!-- Controls Panel -->
+      <div class="controls-panel">
+            
+      <!-- Theme Selector -->
+      <div class="control-group">
+            <div class="control-label">Theme</div>
+            <div class="theme-buttons">
+                  <div class="theme-btn active" data-theme="white" title="Light Mode">
+                        <i class="fas fa-sun"></i>
+                  </div>
+                  <div class="theme-btn" data-theme="coffee" title="Coffee Mode">
+                        <i class="fas fa-mug-hot"></i>
+                  </div>
+                  <div class="theme-btn" data-theme="dark" title="Dark Mode">
+                        <i class="fas fa-moon"></i>
+                  </div>
+            </div>
+      </div>
+
+      <!-- Font Selection -->
+      <div class="control-group">
+            <div class="control-label">Font</div>
+            <select class="font-select" id="font-select" title="Font selector">
+                  <option value="georgia">Georgia (Classic)</option>
+                  <option value="serif">Merriweather (Elegant)</option>
+                  <option value="lora">Lora (Modern Serif)</option>
+                  <option value="playfair">Playfair Display (Stylish)</option>
+                  <option value="sans">System Sans (Clean)</option>
+                  <option value="openSans">Open Sans (Readable)</option>
+                  <option value="mono">Courier (Typewriter)</option>
+                  <option value="writer">Courier Prime (Writer)</option>
+            </select>
+      </div>
+
+      <!-- Word Limit -->
+      <div class="control-group">
+            <div class="control-label">Word Limit</div>
+            <div style="display: flex; align-items: center; gap: 16px; width: 100%;">
+                  <div class="limit-input" style="margin: 0;">
+                        <input type="number" id="word-limit-input" placeholder="Max words" min="1" value="500" />
+                  </div>
+                  <div class="limit-toggle" style="margin-left: auto;">
+                        <div class="toggle-switch" id="limit-toggle">
+                              <div class="toggle-slider"></div>
+                        </div>
+                        <span>Enable</span>
+                  </div>
+            </div>
+            <div id="word-limit-warning" style="display:none;color:#ff4444;font-size:13px;margin-top:4px;">
+                  Word limit exceeded!
+            </div>
+      </div>
+
+      <!-- File Controls -->
+      <div class="control-group">
+            <div class="control-label">Files</div>
+            <div class="file-buttons">
+                  <button class="file-btn" id="saveBtn">
+                        <i class="fas fa-save"></i> Save File
+                  </button>
+                  <button class="file-btn" id="openBtn">
+                        <i class="fas fa-folder-open"></i> Open File
+                  </button>
+                  <button class="file-btn" id="newBtn">
+                        <i class="fas fa-file"></i> New Document
+                  </button>
+            </div>
+            <input type="file" id="file-input" accept=".txt,.md" />
+      </div>
+      </div>
+
+<script src="kanso-scripts.js"></script>
+
+</html>
+</body>
+
+</html>

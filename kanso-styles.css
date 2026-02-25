@@ -1,0 +1,589 @@
+:root {
+      --color-bg-white: #ffffff;
+      --color-text-white: #333333;
+      --color-bg-dark: #1a1a1a;
+      --color-text-dark: #e0e0e0;
+      --color-bg-coffee: #f4f1ea;
+      --color-text-coffee: #4a3728;
+      --color-bg-writing-white: rgba(255, 255, 255, 0.5);
+      --color-bg-writing-dark: rgba(30, 30, 30, 0.5);
+      --color-bg-writing-coffee: rgba(244, 241, 234, 0.5);
+      --color-warning: #ff4444;
+      --color-warning-light: #ff8888;
+      --color-placeholder-dark: #888;
+      --color-placeholder-coffee: #8b7355;
+      --color-panel-bg: rgba(0, 0, 0, 0.05);
+      --color-panel-bg-dark: rgba(255, 255, 255, 0.1);
+      --color-panel-bg-coffee: rgba(74, 55, 40, 0.1);
+      --color-btn-bg: #fff;
+      --color-btn-bg-dark: rgba(255, 255, 255, 0.1);
+      --color-btn-bg-coffee: rgba(255, 255, 255, 0.7);
+      --color-btn-hover-bg: rgba(255, 255, 255, 0.5);
+      --color-btn-hover-bg-coffee: rgba(255, 255, 255, 0.9);
+      --color-border-dark: rgba(255, 255, 255, 0.3);
+      --color-border-coffee: rgba(74, 55, 40, 0.3);
+      --color-border: rgba(0, 0, 0, 0.2);
+      --color-border-active: currentColor;
+      --color-toggle-active: #4CAF50;    
+}
+
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+}
+
+body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      overflow: hidden;
+      height: 100vh;
+}
+
+body.white {
+      background-color: var(--color-bg-white);
+      color: var(--color-text-white);
+}
+
+body.dark {
+      background-color: var(--color-bg-dark);
+      color: var(--color-text-dark);
+}
+
+body.coffee {
+      background-color: var(--color-bg-coffee);
+      color: var(--color-text-coffee);
+}
+
+h2.zen-app-title {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 24px;
+      font-weight: 700;
+      opacity: 0.8;
+      pointer-events: none;
+      z-index: 1000;
+}
+
+.container {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+}
+
+#writing-area {
+      width: 100%;
+      max-width: 800px;
+      height: 80vh;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 18px;
+      line-height: 1.8;
+      resize: none;
+      font-family: inherit;
+      color: inherit;
+      transition: border 0.3s ease;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: left;
+}
+
+body.white #writing-area {
+      background-color: var(--color-bg-writing-white);
+}
+
+body.dark #writing-area {
+      background-color: var(--color-bg-writing-dark);
+}
+
+body.coffee #writing-area {
+      background-color: var(--color-bg-writing-coffee);
+}
+
+#writing-area.over-limit {
+      border: 3px solid var(--color-warning);
+      animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+
+      0%,
+      100% {
+            border-color: var(--color-warning);
+      }
+
+      50% {
+            border-color: var(--color-warning-light);
+      }
+}
+
+#writing-area::placeholder {
+      opacity: 0.4;
+}
+
+body.dark #writing-area::placeholder {
+      color: var(--color-placeholder-dark);
+}
+
+body.coffee #writing-area::placeholder {
+      color: var(--color-placeholder-coffee);
+}
+
+/* Stats Panel */
+.stats-panel {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--color-panel-bg);
+      padding: 12px 24px;
+      border-radius: 20px;
+      display: flex;
+      gap: 20px;
+      font-size: 14px;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+}
+
+body.dark .stats-panel {
+      background: var(--color-panel-bg-dark);
+}
+
+body.coffee .stats-panel {
+      background: var(--color-panel-bg-coffee);
+}
+
+.stats-panel:hover,
+.stats-panel.active {
+      opacity: 1;
+}
+
+.stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+}
+
+.stat-label {
+      font-size: 11px;
+      opacity: 0.6;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+}
+
+.stat-value {
+      font-size: 16px;
+      font-weight: 600;
+}
+
+.stat-value.warning {
+      color: var(--color-warning);
+}
+
+/* Controls Panel */
+.controls-panel {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+}
+
+.controls-panel:hover {
+      opacity: 1;
+}
+
+.control-group {
+      background: var(--color-panel-bg);
+      padding: 16px;
+      border-radius: 12px;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+}
+
+body.dark .control-group {
+      background: var(--color-panel-bg-dark);
+}
+
+body.coffee .control-group {
+      background: var(--color-panel-bg-coffee);
+}
+
+.control-label {
+      font-size: 11px;
+      opacity: 0.6;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+}
+
+.theme-buttons {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+}
+
+.theme-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      background: var(--color-panel-bg);
+}
+
+body.dark .theme-btn {
+      background: var(--color-panel-bg-dark);
+}
+
+body.coffee .theme-btn {
+      background: var(--color-panel-bg-coffee);
+}
+
+.theme-btn:hover {
+      transform: scale(1.1);
+      background: rgba(0, 0, 0, 0.1);
+}
+
+body.dark .theme-btn:hover {
+      background: var(--color-panel-bg-dark);
+}
+
+body.coffee .theme-btn:hover {
+      background: var(--color-panel-bg-coffee);
+}
+
+.theme-btn.active {
+      border-color: var(--color-border-active);
+      box-shadow: 0 0 0 2px var(--color-panel-bg);
+      background: rgba(0, 0, 0, 0.1);
+}
+
+body.dark .theme-btn.active {
+      box-shadow: 0 0 0 2px var(--color-panel-bg-dark);
+      background: var(--color-panel-bg-dark);
+}
+
+body.coffee .theme-btn.active {
+      box-shadow: 0 0 0 2px var(--color-panel-bg-coffee);
+      background: var(--color-panel-bg-coffee);
+}
+
+.limit-input {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+}
+
+.limit-input input {
+      width: 80px;
+      padding: 8px;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      background: var(--color-bg-writing-white);
+      color: inherit;
+      font-size: 14px;
+      outline: none;
+}
+
+body.dark .limit-input input {
+      background: var(--color-btn-bg-dark);
+      border-color: var(--color-border-dark);
+}
+
+body.coffee .limit-input input {
+      background: var(--color-btn-bg-coffee);
+      border-color: var(--color-border-coffee);
+}
+
+.limit-input input:focus {
+      border-color: var(--color-border-active);
+}
+
+.limit-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      cursor: pointer;
+      -webkit-user-select: none;
+      user-select: none;
+}
+
+.toggle-switch {
+      width: 40px;
+      height: 20px;
+      background: var(--color-bg-dark);
+      border-radius: 10px;
+      position: relative;
+      transition: background 0.3s ease;
+      cursor: pointer;
+}
+
+.toggle-switch.active {
+      background: var(--color-toggle-active);
+}
+
+.toggle-slider {
+      width: 16px;
+      height: 16px;
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      transition: left 0.3s ease;
+}
+
+.toggle-switch.active .toggle-slider {
+      left: 22px;
+}
+
+/* Font Selection */
+.font-select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      background: var(--color-bg-writing-white);
+      color: inherit;
+      font-size: 13px;
+      outline: none;
+      cursor: pointer;
+}
+
+body.dark .font-select {
+      background: rgba(86, 26, 26, 0.1);
+      border-color: var(--color-border-dark);
+}
+
+body.coffee .font-select {
+      background: var(--color-btn-bg-coffee);
+      border-color: var(--color-border-coffee);
+}
+
+.font-select:focus {
+      border-color: var(--color-border-active);
+}
+
+#font-select,
+#font-size-select {
+      min-width: 120px;
+      height: 36px;
+      font-size: 13px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      background: var(--color-btn-bg);
+      color: #222;
+      padding: 0 8px;
+      box-sizing: border-box;
+}
+
+body.dark #font-select,
+body.dark #font-size-select {
+      background: #222;
+      color: var(--color-text-dark);
+      border: 1px solid #444;
+}
+
+body.coffee #font-select,
+body.coffee #font-size-select {
+      background: var(--color-bg-coffee);
+      color: var(--color-text-coffee);
+      border: 1px solid #bfa98a;
+}
+
+/* Font Family Classes */
+body.font-georgia #writing-area {
+      font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+body.font-serif #writing-area {
+      font-family: 'Merriweather', Georgia, serif;
+}
+
+body.font-sans #writing-area {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+body.font-mono #writing-area {
+      font-family: 'Courier New', Courier, monospace;
+}
+
+body.font-writer #writing-area {
+      font-family: 'Courier Prime', 'Courier New', monospace;
+}
+
+body.font-lora #writing-area {
+      font-family: 'Lora', Georgia, serif;
+}
+
+body.font-openSans #writing-area {
+      font-family: 'Open Sans', -apple-system, sans-serif;
+}
+
+body.font-playfair #writing-area {
+      font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* File Controls */
+.file-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+}
+
+.file-btn {
+      padding: 10px 16px;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      background: var(--color-btn-bg);
+      color: inherit;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.2s ease;
+      text-align: left;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 8px;
+}
+
+.file-btn i {
+      font-size: 14px;
+}
+
+.file-btn:hover {
+      background: rgba(255, 255, 255, 0.5);
+      transform: translateX(-2px);
+}
+
+body.dark .file-btn {
+      background: var(--color-btn-bg-dark);
+      border-color: var(--color-border-dark);
+}
+
+body.dark .file-btn:hover {
+      background: var(--color-btn-bg-dark);
+}
+
+body.coffee .file-btn {
+      background: var(--color-btn-bg-coffee);
+      border-color: var(--color-border-coffee);
+}
+
+body.coffee .file-btn:hover {
+      background: var(--color-btn-hover-bg-coffee);
+}
+
+#file-input {
+      display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+      #writing-area {
+            font-size: 16px;
+            padding: 15px;
+            height: 75vh;
+      }
+
+      .stats-panel {
+            bottom: 10px;
+            padding: 10px 16px;
+            gap: 12px;
+            font-size: 12px;
+            flex-wrap: wrap;
+            max-width: 90%;
+      }
+
+      .stat-value {
+            font-size: 14px;
+      }
+
+      .controls-panel {
+            bottom: 10px;
+            right: 10px;
+            opacity: 0.3;
+      }
+
+      .control-group {
+            padding: 12px;
+      }
+
+      .theme-btn {
+            width: 36px;
+            height: 36px;
+            font-size: 16px;
+      }
+}
+
+@media (max-width: 480px) {
+      .container {
+            padding: 10px;
+      }
+
+      #writing-area {
+            font-size: 15px;
+            padding: 12px;
+      }
+
+      .stats-panel {
+            gap: 8px;
+            padding: 8px 12px;
+      }
+
+      .stat-item {
+            gap: 2px;
+      }
+
+      .control-label {
+            font-size: 10px;
+      }
+
+      .limit-input input {
+            width: 70px;
+            font-size: 13px;
+      }
+}
+
+/* Hover Triggers */
+.hover-trigger-bottom {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      pointer-events: none;
+}
+
+.hover-trigger-right {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      width: 120px;
+      height: 400px;
+      pointer-events: none;
+}
