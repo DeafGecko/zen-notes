@@ -38,4 +38,4 @@ You can easily add new fonts, themes, or features by editing the HTML and CSS fi
 This project is open source and free to use for personal and educational purposes.
 
 ---
-Created with Zen principles for clarity and focus.
+Created with Zen principles for clarity and focus.# zen-notes
